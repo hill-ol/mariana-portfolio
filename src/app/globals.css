@@ -1,6 +1,13 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  --brand-brown: #604734;
+  --brand-brown-deep: #4a3627;
+  --brand-cream: #fbf4dc;
+  --brand-blush: #f6d8d6;
+  --brand-pink: #f0c5d4;
+  --brand-rule: rgba(96, 71, 52, 0.18);
 }
 
 @media (prefers-color-scheme: dark) {

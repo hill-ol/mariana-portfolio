@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
+import TopBar from "./components/TopBar";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,15 +13,26 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
-  title: "Mariana — Marketing Portfolio",
+  title: "Mariana's Marketing Portfolio",
   description: "Marketing portfolio: selected work, case studies, and contact.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>{children}</body>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable}`}
+    >
+      <body>
+        <TopBar />
+        {children}
+      </body>
     </html>
   );
 }

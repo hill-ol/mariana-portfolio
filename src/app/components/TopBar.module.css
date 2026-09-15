@@ -1,0 +1,165 @@
+.topBar {
+  --bar-fg: var(--brand-brown);
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 18px 40px;
+  background: var(--brand-cream);
+  border-bottom: 1px solid var(--brand-rule);
+  color: var(--bar-fg);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+.brand {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+
+.brandName {
+  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.brandTagline {
+  font-size: 0.66rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--bar-fg) 88%, transparent);
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+}
+
+.navLink {
+  position: relative;
+  padding-block: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--bar-fg);
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 1.5px;
+  background: currentColor;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+
+.navLink[data-active]::after {
+  opacity: 1;
+}
+
+.cta {
+  display: inline-flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  gap: 9px;
+  max-width: max-content;
+  margin-inline-start: auto;
+  padding: 11px 21px;
+  border-radius: 999px;
+  background: var(--bar-fg);
+  color: var(--brand-cream);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: background-color 0.18s ease, transform 0.18s ease;
+}
+
+.ctaGlyph {
+  width: 9px;
+  height: 9px;
+  fill: currentColor;
+  flex: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .navLink:hover::after {
+    opacity: 0.45;
+  }
+
+  .cta:hover {
+    background: var(--brand-brown-deep);
+    transform: translateY(-1px);
+  }
+}
+
+.navLink:focus-visible,
+.cta:focus-visible,
+.brand:focus-visible {
+  outline: 2px solid var(--bar-fg);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.cta:focus-visible {
+  outline-offset: 2px;
+}
+
+@media (max-width: 1000px) {
+  .topBar {
+    flex-wrap: wrap;
+    gap: 16px 24px;
+  }
+
+  .brand {
+    flex-basis: 100%;
+  }
+
+  .nav {
+    flex: 1;
+    gap: 24px;
+  }
+
+  .cta {
+    flex: none;
+  }
+}
+
+@media (max-width: 600px) {
+  .topBar {
+    padding: 16px 20px;
+  }
+
+  .brandName {
+    font-size: 1.3rem;
+    white-space: normal;
+  }
+
+  .nav {
+    flex-basis: 100%;
+    flex-wrap: wrap;
+    gap: 14px 20px;
+  }
+
+  .cta {
+    margin-inline-start: 0;
+  }
+}
