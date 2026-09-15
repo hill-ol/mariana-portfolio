@@ -42,7 +42,7 @@ export const destinations: Destination[] = [
       "Focusing on cross-border communications, EU brand strategies, and cultural nuances in consumer storytelling.",
     photoLabel: "Currently Enrolled",
     coordinates: "37.3891° N, 5.9845° W",
-    tag: "Spring/Summer 2025",
+    tag: "Fall 2026",
   },
   {
     slug: "london",
@@ -88,7 +88,7 @@ export const destinations: Destination[] = [
       "Rigorous analytical coursework, agency client pitches, leadership in collegiate marketing societies, and mentor initiatives.",
     photoLabel: "Northeastern Base",
     coordinates: "42.3398° N, 71.0892° W",
-    tag: "Expected Grad: 2026",
+    tag: "Expected Grad: May 2028",
   },
 ];
 
