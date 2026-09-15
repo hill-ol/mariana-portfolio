@@ -1,69 +1,69 @@
-import Image from "next/image";
+import ProjectGrid from "./components/ProjectGrid";
+import { projects } from "./content/projects";
 import styles from "./page.module.css";
+
+const focusAreas = [
+  { label: "UX/UI Prototyping", tone: "solid" },
+  { label: "Social Media Takeovers", tone: "pink" },
+  { label: "Editorial Curation", tone: "blush" },
+  { label: "Aesthetic Moodboards", tone: "outline" },
+];
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>
-            To get started, edit the{" "}
-            <code className={styles.code}>page.tsx</code> file.
+    <main className={styles.page}>
+      <section className={styles.hero}>
+        <div className={styles.heroInner}>
+          <h1 className={styles.heroTitle}>
+            Marketing &amp; PR Strategist,
+            <br />
+            Digital Storyteller &amp; <em>UX Explorer.</em>
           </h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
+
+          <p className={styles.heroBody}>
+            Hi! I&rsquo;m a junior at Northeastern University studying Business
+            Administration &amp; Communication, with a Concentration in
+            Marketing. Blending tactile visual research, real-world social
+            takeovers, and wireframe prototypes into warm, intentional brand
+            experiences.
           </p>
+
+          <ul className={styles.tags}>
+            {focusAreas.map(({ label, tone }) => (
+              <li key={label} className={styles.tag} data-tone={tone}>
+                {label}
+              </li>
+            ))}
+          </ul>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section className={styles.portfolio}>
+        <div className={styles.portfolioCard}>
+          <header className={styles.portfolioHead}>
+            <h2 className={styles.portfolioTitle}>Creative Portfolio</h2>
+            <p className={styles.hint}>
+              <svg
+                className={styles.hintIcon}
+                viewBox="0 0 14 12"
+                aria-hidden="true"
+                focusable="false"
+              >
+                <path
+                  d="M1 10.5V2a1 1 0 0 1 1-1h3.2l1.3 1.5H12a1 1 0 0 1 1 1v6a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1Z"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.1"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              Click any folder to inspect inside
+            </p>
+          </header>
+
+          <ProjectGrid projects={projects} />
         </div>
-      </main>
-    </div>
+      </section>
+    </main>
   );
 }

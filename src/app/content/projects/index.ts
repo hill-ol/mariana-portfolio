@@ -6,6 +6,10 @@ export type Project = {
   context: string;
   /** Omitted where the source outline does not specify one. */
   timeframe?: string;
+  /** Small pill label on the folder card, e.g. "Product Design". */
+  category: string;
+  /** Second line on the folder card, e.g. "Paper Wireframes & Research". */
+  subtitle: string;
   /** One-line framing used on cards and previews. */
   summary: string;
   /** Long-form write-up, one string per paragraph. */
@@ -18,8 +22,11 @@ export type Project = {
 export const projects: Project[] = [
   {
     slug: "regal-princess-parties",
-    title: "Regal Princess Parties Social Media",
+    title: "Regal Princess Takeover",
     context: "Regal Princess Parties — Franklin, MA",
+    timeframe: "Summer 2025",
+    category: "Summer '25",
+    subtitle: "Social Media & Viral Video",
     summary:
       "Grew a children's party company's social presence from scratch, using engagement analysis to build a content strategy aimed at the parents who actually book.",
     body: [
@@ -49,6 +56,8 @@ export const projects: Project[] = [
     title: "NU Journalism Instagram Takeover",
     context: "Digital Storytelling and Social Media — Northeastern University",
     timeframe: "Spring 2026",
+    category: "Social Takeover",
+    subtitle: "Instagram Strategy & Reels",
     summary:
       "Revived a dormant student journalism account with a team of classmates, researching platform trends to earn attention from a student audience.",
     body: [
@@ -78,6 +87,8 @@ export const projects: Project[] = [
     title: "Pawsitive Paws Resort Launch",
     context: "Pawsitive Paws Resort",
     timeframe: "Summer 2026",
+    category: "Brand Launch",
+    subtitle: "Social Strategy & Canva Visuals",
     summary:
       "Built a brand-new dog boarding company's social presence from the ground up, working directly with the owner to make trust the center of the strategy.",
     body: [
@@ -109,6 +120,8 @@ export const projects: Project[] = [
     title: "UX/UI App Design with Figma",
     context: "Experience and Interaction — Northeastern University",
     timeframe: "Fall 2024",
+    category: "Product Design",
+    subtitle: "Paper Wireframes & Research",
     summary:
       "Took an app for Northeastern University London students through the full UX/UI process, spending most of the project defining the problem before designing a solution.",
     body: [
@@ -142,6 +155,8 @@ export const projects: Project[] = [
     title: "Market Cap Data Visualization",
     context: "Communications coursework — Northeastern University",
     timeframe: "Spring 2026",
+    category: "Data Storytelling",
+    subtitle: "Flourish & Design Thinking",
     summary:
       "Turned a ranking of the world's 100 largest companies into a bubble visualization in Flourish, using size and color to convey a scale that a bar chart would flatten.",
     body: [

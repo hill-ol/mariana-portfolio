@@ -1,150 +1,164 @@
 .page {
-  --background: #fafafa;
-  --foreground: #fff;
-
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
-  display: flex;
   flex: 1;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
+  color: var(--brand-brown);
+  background: var(--brand-cream);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
-.main {
-  display: flex;
-  flex: 1;
-  width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
+/* Hero ------------------------------------------------------------------- */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--brand-rule);
+  /* Soft blush washes, matching the diffuse glows in the design. */
+  background-image:
+    radial-gradient(
+      430px 330px at 78% 44%,
+      rgba(223, 178, 158, 0.32),
+      transparent 70%
+    ),
+    radial-gradient(
+      260px 230px at 88% 22%,
+      rgba(214, 167, 151, 0.26),
+      transparent 70%
+    ),
+    radial-gradient(
+      380px 300px at 8% 104%,
+      rgba(240, 197, 212, 0.4),
+      transparent 70%
+    );
 }
 
-.intro {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
+.heroInner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 44px 40px 86px;
 }
 
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
-}
-
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
-}
-
-.intro a {
+.heroTitle {
+  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 3.4vw, 2.65rem);
   font-weight: 500;
-  color: var(--text-primary);
+  line-height: 1.22;
+  letter-spacing: -0.015em;
 }
 
-.ctas {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
+.heroTitle em {
+  font-style: italic;
 }
 
-.ctas a {
+.heroBody {
+  max-width: 34rem;
+  margin-top: 26px;
+  font-size: 0.83rem;
+  line-height: 1.85;
+  color: color-mix(in srgb, var(--brand-brown) 92%, transparent);
+}
+
+.tags {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 30px;
+  list-style: none;
+}
+
+.tag {
+  padding: 7px 14px;
   border: 1px solid transparent;
-  transition: 0.2s;
-  cursor: pointer;
-  width: fit-content;
+  border-radius: 999px;
+  font-size: 0.57rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.tag[data-tone="solid"] {
+  background: var(--brand-brown);
+  color: var(--brand-cream);
+}
+
+.tag[data-tone="pink"] {
+  background: var(--brand-pink);
+}
+
+.tag[data-tone="blush"] {
+  background: var(--brand-blush);
+}
+
+.tag[data-tone="outline"] {
+  border-color: var(--brand-rule);
+}
+
+/* Portfolio -------------------------------------------------------------- */
+
+.portfolio {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 44px 40px 72px;
+}
+
+.portfolioCard {
+  padding: 40px 36px 46px;
+  border-radius: 22px;
+  background: var(--brand-card);
+  box-shadow: 0 18px 40px -28px rgba(96, 71, 52, 0.4);
+}
+
+.portfolioHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 26px;
+  border-bottom: 1px solid var(--brand-rule);
+  margin-bottom: 44px;
+}
+
+.portfolioTitle {
+  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex: none;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--brand-butter);
+  font-size: 0.6rem;
   font-weight: 500;
 }
 
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
-  gap: 8px;
+.hintIcon {
+  width: 12px;
+  height: 11px;
+  flex: none;
 }
 
-a.secondary {
-  border-color: var(--button-secondary-border);
-}
-
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
+@media (max-width: 760px) {
+  .heroInner {
+    padding: 32px 22px 62px;
   }
 
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
-}
-
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
+  .portfolio {
+    padding: 32px 22px 56px;
   }
 
-  .intro {
-    gap: 16px;
+  .portfolioCard {
+    padding: 28px 22px 32px;
+    border-radius: 16px;
   }
 
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
+  .portfolioHead {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 34px;
   }
-}
-
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
-
-  .page {
-    --background: #000;
-    --foreground: #000;
-
-    --text-primary: #ededed;
-    --text-secondary: #999;
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
-  }
-}
-
-.code {
-  font-family: var(--font-geist-mono);
-  font-size: 0.9em;
-  background: color-mix(in srgb, currentColor 8%, transparent);
-  padding: 0.1em 0.4em;
-  border-radius: 6px;
 }

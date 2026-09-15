@@ -5,7 +5,9 @@ import { usePathname } from "next/navigation";
 import styles from "./TopBar.module.css";
 
 const navItems = [
-  { label: "Work & Projects", href: "/" },
+  /* `owns` lets a nav item stay active on its detail pages — /work/[slug]
+     should keep "Work & Projects" underlined. */
+  { label: "Work & Projects", href: "/", owns: ["/work"] },
   { label: "About Me", href: "/about-me" },
   { label: "Creative Process", href: "/creative-process" },
 ];
@@ -27,8 +29,10 @@ export default function TopBar() {
       </Link>
 
       <nav className={styles.nav} aria-label="Main">
-        {navItems.map(({ label, href }) => {
-          const isActive = pathname === href;
+        {navItems.map(({ label, href, owns }) => {
+          const isActive =
+            pathname === href ||
+            (owns?.some((prefix) => pathname.startsWith(prefix)) ?? false);
 
           return (
             <Link
