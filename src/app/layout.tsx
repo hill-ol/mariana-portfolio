@@ -30,6 +30,12 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable}`}
     >
       <body>
+        <noscript>
+          {/* Scroll reveals SSR their hidden state and need JS to play, so
+              without it that content would stay invisible forever. */}
+          <style>{`[data-reveal], [data-reveal] > * { opacity: 1 !important; transform: none !important; }`}</style>
+        </noscript>
+
         <TopBar />
         {children}
       </body>

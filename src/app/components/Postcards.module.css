@@ -1,0 +1,196 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+  list-style: none;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 22px 20px 16px;
+  border: 1px solid var(--brand-rule);
+  border-radius: 10px;
+  background: var(--brand-card);
+  color: var(--brand-brown);
+}
+
+/* Airmail border along the top edge. */
+.stripe {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 7px;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--brand-pink) 0 9px,
+    var(--brand-brown) 9px 18px,
+    var(--brand-cream) 18px 27px
+  );
+}
+
+/* Header ----------------------------------------------------------------- */
+
+.head {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding-bottom: 16px;
+}
+
+.country {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  flex: none;
+  border-radius: 50%;
+  background: var(--brand-blush);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.eyebrow {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.city {
+  margin-top: 2px;
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: 0.95rem;
+}
+
+/* Body ------------------------------------------------------------------- */
+
+.split {
+  display: grid;
+  grid-template-columns: 40% 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.photo {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  aspect-ratio: 4 / 3;
+}
+
+.photoImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Stands in until real photography exists. */
+.photoPlaceholder {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    150deg,
+    var(--brand-blush),
+    var(--brand-butter) 70%
+  );
+}
+
+.photoLabel {
+  position: absolute;
+  bottom: 6px;
+  left: 6px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.88);
+  font-size: 0.54rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.headline {
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.quote {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: 0.78rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+.blurb {
+  font-size: 0.7rem;
+  line-height: 1.6;
+  color: color-mix(in srgb, var(--brand-brown) 82%, transparent);
+}
+
+/* Footer ----------------------------------------------------------------- */
+
+.foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 18px;
+  padding-top: 13px;
+  border-top: 1px solid var(--brand-rule);
+}
+
+/* Decorative texture, not content — hidden from screen readers in the JSX. */
+.coords {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.02em;
+  color: color-mix(in srgb, var(--brand-brown) 45%, transparent);
+}
+
+.tag {
+  flex: none;
+  padding: 6px 11px;
+  border-radius: 4px;
+  background: var(--brand-butter);
+  font-size: 0.6rem;
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+}
+
+/* The photo/text split gets too tight to read before the grid collapses, so
+   stack it on its own breakpoint. */
+@media (max-width: 620px) {
+  .split {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .photo {
+    aspect-ratio: 16 / 9;
+  }
+
+  .foot {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 9px;
+  }
+}

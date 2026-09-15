@@ -5,36 +5,17 @@
   list-style: none;
 }
 
+/* The mount stagger lives on the cell, not on the card: the card is
+   layout-animated by Motion, and a CSS transform on it would fight the
+   projection used for the folder-to-modal morph. */
 .cell {
   display: flex;
+  /* 5 cards, so the step has to stay small — the last card should not be
+     still arriving half a second after the first. */
+  animation: dealIn 460ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
+  animation-delay: calc(var(--index, 0) * 45ms);
 }
 
-/* Folder ----------------------------------------------------------------- */
-
-.folder {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-  width: 100%;
-  max-width: 200px;
-  /* Leaves room for the tab, which sits above the card's own box. */
-  margin-top: 15px;
-  padding: 13px 14px 16px;
-  border-radius: 4px 10px 10px 10px;
-  color: var(--brand-brown);
-  background: var(--folder-bg);
-  box-shadow: 0 6px 14px -8px rgba(96, 71, 52, 0.45);
-  transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.24s ease;
-  /* `backwards` rather than `both`: the fill is only needed before the delay
-     elapses. Holding it afterwards would outrank the :hover transform. */
-  animation: dealIn 420ms cubic-bezier(0.22, 1, 0.36, 1) backwards;
-  animation-delay: calc(var(--index, 0) * 55ms);
-}
-
-/* Folders deal back in when returning from a project, echoing the stagger the
-   detail page opens with. */
 @keyframes dealIn {
   from {
     opacity: 0;
@@ -44,6 +25,35 @@
     opacity: 1;
     transform: none;
   }
+}
+
+.folderLink {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  /* Leaves room for the tab, which sits above the card's own box. */
+  margin-top: 15px;
+  border-radius: 4px 10px 10px 10px;
+}
+
+.folderLink:focus-visible {
+  outline: 2px solid var(--brand-brown);
+  outline-offset: 3px;
+}
+
+/* Folder ----------------------------------------------------------------- */
+
+.folder {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  padding: 13px 14px 16px;
+  border-radius: 4px 10px 10px 10px;
+  color: var(--brand-brown);
+  background: var(--folder-bg);
+  box-shadow: 0 6px 14px -8px rgba(96, 71, 52, 0.45);
+  transition: box-shadow 0.24s ease;
 }
 
 .folder[data-tone="pink"] {
@@ -57,7 +67,7 @@
 }
 
 /* The folder tab. Sits flush on top of the card and inherits its color.
-   It grows on hover, which reads as the folder starting to open. */
+   Absolutely positioned, so growing it costs no layout. */
 .tab {
   position: absolute;
   top: -15px;
@@ -94,6 +104,7 @@
   flex: none;
   margin-top: 3px;
   opacity: 0.75;
+  transition: opacity 0.18s ease;
 }
 
 .body {
@@ -115,50 +126,33 @@
   color: color-mix(in srgb, var(--brand-brown) 78%, transparent);
 }
 
+/* Hover — the lift itself is Motion's whileHover, so only non-transform
+   properties are handled here. */
 @media (hover: hover) and (pointer: fine) {
-  .folder:hover {
-    transform: translateY(-4px);
+  .folderLink:hover .folder {
     box-shadow: 0 14px 22px -10px rgba(96, 71, 52, 0.55);
   }
 
-  .folder:hover .tab {
+  .folderLink:hover .tab {
     top: -19px;
     height: 20px;
   }
 
-  .folder:hover .arrow {
+  .folderLink:hover .arrow {
     opacity: 1;
   }
 }
 
-/* Press reads as the folder being pushed open, and hands off to the detail
-   page's unfold animation. */
-.folder:active {
-  transform: translateY(-1px) scale(0.98);
-  transition-duration: 90ms;
-}
-
-.folder:focus-visible {
-  outline: 2px solid var(--brand-brown);
-  outline-offset: 3px;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .folder,
-  .tab {
-    transition: box-shadow 0.2s ease;
-  }
-
-  .folder {
+  .cell {
     animation: none;
   }
 
-  .folder:hover,
-  .folder:active {
-    transform: none;
+  .tab {
+    transition: none;
   }
 
-  .folder:hover .tab {
+  .folderLink:hover .tab {
     top: -15px;
     height: 16px;
   }
@@ -177,7 +171,7 @@
     gap: 40px;
   }
 
-  .folder {
+  .folderLink {
     max-width: none;
   }
 }

@@ -1,0 +1,83 @@
+.page {
+  flex: 1;
+  color: var(--brand-brown);
+  background: var(--brand-cream);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Hero ------------------------------------------------------------------- */
+
+.hero {
+  border-bottom: 1px solid var(--brand-rule);
+  background-image:
+    radial-gradient(
+      420px 320px at 76% 40%,
+      rgba(223, 178, 158, 0.3),
+      transparent 70%
+    ),
+    radial-gradient(
+      340px 280px at 8% 100%,
+      rgba(240, 197, 212, 0.34),
+      transparent 70%
+    );
+}
+
+.heroInner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 52px 40px 66px;
+}
+
+.title {
+  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 3.4vw, 2.65rem);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+
+.status {
+  margin-top: 16px;
+  padding: 8px 15px;
+  border-radius: 999px;
+  background: var(--brand-brown);
+  color: var(--brand-cream);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.lede {
+  max-width: 34rem;
+  margin-top: 26px;
+  font-size: 0.86rem;
+  line-height: 1.85;
+  color: color-mix(in srgb, var(--brand-brown) 92%, transparent);
+}
+
+/* Letter ----------------------------------------------------------------- */
+
+.panel {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 44px 40px 76px;
+}
+
+/* The letter itself is styled by ContactCard.module.css, shared with the
+   modal. This only constrains its width on the page. */
+.letterWrap {
+  max-width: 760px;
+}
+
+@media (max-width: 760px) {
+  .heroInner {
+    padding: 36px 22px 52px;
+  }
+
+  .panel {
+    padding: 30px 22px 56px;
+  }
+}

@@ -1,0 +1,31 @@
+/* body is a flex column and each page uses `flex: 1`, so this wrapper has to
+   pass that through or the pages lose their full-height sizing. */
+.template {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  animation: routeIn 190ms ease-out backwards;
+}
+
+/* Deliberately short, and opacity only.
+   Navigation itself takes ~50-200ms, so a long fade just holds finished
+   content behind a mask and reads as lag. There is also no exit animation
+   available in the App Router, so keeping this brief minimises the
+   asymmetry between the hard cut out and the fade in.
+   No translate: transforming a full page builds a large composited layer for
+   no gain, and the slide fights the scroll reset. */
+@keyframes routeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .template {
+    animation: none;
+  }
+}

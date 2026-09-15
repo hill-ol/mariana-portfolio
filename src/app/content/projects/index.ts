@@ -1,3 +1,20 @@
+export type MediaItem = {
+  /** "reel" is a portrait short-form video; "video" is landscape. */
+  kind: "image" | "video" | "reel";
+  /**
+   * Local file under /public — e.g. "/media/regal-reel-01.mp4". Prefer
+   * self-hosting over an Instagram embed: no third-party script, no borrowed
+   * chrome, and it keeps working if a post goes private.
+   */
+  src?: string;
+  /** Still frame shown before a video plays, and used in the browse strip. */
+  poster?: string;
+  /** Live permalink (Instagram post, Flourish viz) shown as a side link. */
+  href?: string;
+  alt: string;
+  caption?: string;
+};
+
 export type Project = {
   /** URL segment, e.g. /work/regal-princess-parties */
   slug: string;
@@ -17,6 +34,14 @@ export type Project = {
   /** The "What I did" bullets. */
   contributions: string[];
   skills: string[];
+  /**
+   * Reels, videos and stills. Empty until real files exist in /public — the
+   * detail view and the browse strip both fall back to a tinted placeholder,
+   * so nothing looks broken in the meantime.
+   */
+  media?: MediaItem[];
+  /** Outbound links: live post, published viz, downloadable deck. */
+  links?: { label: string; href: string }[];
 };
 
 export const projects: Project[] = [
@@ -182,6 +207,32 @@ export const projects: Project[] = [
 ];
 
 export const projectSlugs = projects.map(({ slug }) => slug);
+
+export type GalleryItem = {
+  id: string;
+  project: Project;
+  /** Undefined when the project has no media yet. */
+  media?: MediaItem;
+};
+
+/**
+ * Flattened view of every project's media, for the browse strip on the home
+ * page. A project with no media yet contributes a single placeholder tile, so
+ * the strip has shape before any files land and grows as they are added.
+ */
+export function galleryItems(): GalleryItem[] {
+  return projects.flatMap((project) => {
+    if (!project.media?.length) {
+      return [{ id: project.slug, project }];
+    }
+
+    return project.media.map((media, index) => ({
+      id: `${project.slug}-${index}`,
+      project,
+      media,
+    }));
+  });
+}
 
 export function getProject(slug: string): Project | undefined {
   return projects.find((project) => project.slug === slug);

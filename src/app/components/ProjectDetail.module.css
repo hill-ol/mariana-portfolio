@@ -1,0 +1,206 @@
+/* Tone comes from an ancestor (`--tone-bg`), set by the page or the modal, so
+   the write-up keeps the colour of the folder it came from. */
+
+.head {
+  padding-bottom: 4px;
+}
+
+.category {
+  display: inline-block;
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: var(--tone-bg, var(--brand-pink));
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin-top: 16px;
+  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
+  font-size: clamp(1.7rem, 3vw, 2.35rem);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+}
+
+.subtitle {
+  margin-top: 8px;
+  font-size: 0.82rem;
+  color: color-mix(in srgb, var(--brand-brown) 78%, transparent);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 44px;
+  margin-top: 24px;
+}
+
+.meta dt {
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--brand-brown) 62%, transparent);
+}
+
+.meta dd {
+  margin-top: 4px;
+  font-size: 0.8rem;
+}
+
+/* Write-up ---------------------------------------------------------------- */
+
+.card {
+  margin-top: 30px;
+  padding: 34px 32px 38px;
+  border-radius: 14px;
+  background: var(--brand-card);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.body p {
+  font-size: 0.86rem;
+  line-height: 1.85;
+  color: color-mix(in srgb, var(--brand-brown) 94%, transparent);
+}
+
+.section {
+  margin-top: 36px;
+  padding-top: 30px;
+  border-top: 1px solid var(--brand-rule);
+}
+
+.sectionTitle {
+  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+.contributions {
+  margin-top: 18px;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.contributions li {
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.contributions li::marker {
+  color: var(--tone-bg, var(--brand-pink));
+}
+
+/* Media ------------------------------------------------------------------ */
+
+.media {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(168px, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+  list-style: none;
+}
+
+.mediaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Portrait, since reels are the bulk of the content. */
+.mediaAsset,
+.mediaPlaceholder {
+  display: block;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: 8px;
+  object-fit: cover;
+  background: var(--brand-cream);
+}
+
+.mediaPlaceholder {
+  display: grid;
+  place-items: center;
+  border: 1px dashed var(--brand-rule);
+  background: linear-gradient(
+    155deg,
+    var(--tone-bg, var(--brand-pink)),
+    var(--brand-butter)
+  );
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--brand-brown) 62%, transparent);
+}
+
+.mediaCaption {
+  font-size: 0.66rem;
+  line-height: 1.5;
+  color: color-mix(in srgb, var(--brand-brown) 72%, transparent);
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+  list-style: none;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 15px;
+  border-radius: 999px;
+  background: var(--brand-brown);
+  color: var(--brand-cream);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background-color 0.18s ease;
+}
+
+.link:hover {
+  background: var(--brand-brown-deep);
+}
+
+.link:focus-visible {
+  outline: 2px solid var(--brand-brown);
+  outline-offset: 3px;
+}
+
+/* Skills ----------------------------------------------------------------- */
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+  list-style: none;
+}
+
+.skill {
+  padding: 7px 13px;
+  border-radius: 999px;
+  background: var(--brand-butter);
+  font-size: 0.6rem;
+  font-weight: 600;
+}
+
+@media (max-width: 760px) {
+  .card {
+    padding: 26px 20px 30px;
+  }
+}

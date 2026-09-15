@@ -1,0 +1,232 @@
+.page {
+  flex: 1;
+  color: var(--brand-brown);
+  background: var(--brand-cream);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Hero ------------------------------------------------------------------- */
+
+.hero {
+  border-bottom: 1px solid var(--brand-rule);
+  background-image:
+    radial-gradient(
+      420px 320px at 78% 38%,
+      rgba(223, 178, 158, 0.3),
+      transparent 70%
+    ),
+    radial-gradient(
+      340px 280px at 6% 100%,
+      rgba(240, 197, 212, 0.32),
+      transparent 70%
+    );
+}
+
+.heroInner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 52px 40px 64px;
+}
+
+.title {
+  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 3.4vw, 2.65rem);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+
+/* The thesis the rest of the page expands on. */
+.philosophy {
+  max-width: 38rem;
+  margin-top: 24px;
+  padding-left: 16px;
+  border-left: 2px solid var(--brand-pink);
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  line-height: 1.55;
+}
+
+.intro {
+  max-width: 34rem;
+  margin-top: 24px;
+  font-size: 0.84rem;
+  line-height: 1.85;
+  color: color-mix(in srgb, var(--brand-brown) 88%, transparent);
+}
+
+/* Filmstrip -------------------------------------------------------------- */
+
+.panel {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 48px 40px 76px;
+}
+
+/* Brown film base; the gaps between frames are the base showing through. */
+.strip {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 30px;
+  border-radius: 8px;
+  background: var(--brand-brown-deep);
+  list-style: none;
+}
+
+/* Sprocket holes down both edges. */
+.strip::before,
+.strip::after {
+  content: "";
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  width: 11px;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    var(--brand-cream) 0 10px,
+    transparent 10px 26px
+  );
+}
+
+.strip::before {
+  left: 9px;
+}
+
+.strip::after {
+  right: 9px;
+}
+
+.frame {
+  display: grid;
+  grid-template-columns: 78px 1fr;
+  gap: 22px;
+  padding: 30px 28px;
+  border-radius: 3px;
+  background: var(--brand-cream);
+}
+
+.frameNumber {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: 2.6rem;
+  font-weight: 500;
+  line-height: 1;
+  color: color-mix(in srgb, var(--brand-brown) 32%, transparent);
+}
+
+.frameBody {
+  min-width: 0;
+}
+
+.stageIndex {
+  display: block;
+  margin-bottom: 7px;
+  font-family: var(--font-geist-sans), Arial, sans-serif;
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--brand-brown) 58%, transparent);
+}
+
+.stageTitle {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.stageSummary {
+  margin-top: 8px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: color-mix(in srgb, var(--brand-brown) 70%, transparent);
+}
+
+.stageText {
+  max-width: 44rem;
+  margin-top: 14px;
+  font-size: 0.84rem;
+  line-height: 1.85;
+}
+
+/* Receipts --------------------------------------------------------------- */
+
+.receipts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid var(--brand-rule);
+  list-style: none;
+}
+
+.receipts li {
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
+
+.receiptLink {
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--brand-pink);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.18s ease;
+}
+
+.receiptLink:hover {
+  text-decoration-color: var(--brand-brown);
+}
+
+.receiptLink:focus-visible {
+  outline: 2px solid var(--brand-brown);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.receiptNote {
+  color: color-mix(in srgb, var(--brand-brown) 76%, transparent);
+}
+
+@media (max-width: 760px) {
+  .heroInner {
+    padding: 36px 22px 48px;
+  }
+
+  .panel {
+    padding: 32px 14px 56px;
+  }
+
+  .strip {
+    padding: 12px 22px;
+  }
+
+  .strip::before,
+  .strip::after {
+    width: 8px;
+  }
+
+  .strip::before {
+    left: 7px;
+  }
+
+  .strip::after {
+    right: 7px;
+  }
+
+  .frame {
+    /* The number moves above the text rather than squeezing the column. */
+    grid-template-columns: minmax(0, 1fr);
+    gap: 6px;
+    padding: 24px 18px;
+  }
+
+  .frameNumber {
+    font-size: 1.9rem;
+  }
+}

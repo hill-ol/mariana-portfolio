@@ -1,0 +1,127 @@
+.letter {
+  position: relative;
+  overflow: hidden;
+  padding: 44px 40px 40px;
+  border: 1px solid var(--brand-rule);
+  border-radius: 14px;
+  background: var(--brand-card);
+  color: var(--brand-brown);
+  text-align: left;
+  box-shadow: 0 18px 40px -28px rgba(96, 71, 52, 0.4);
+}
+
+/* Airmail edging, echoing the postcards on the About page. */
+.stripe {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 8px;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--brand-pink) 0 9px,
+    var(--brand-brown) 9px 18px,
+    var(--brand-cream) 18px 27px
+  );
+}
+
+.stripe[data-edge="bottom"] {
+  inset: auto 0 0;
+}
+
+.channels {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 32px 36px;
+  list-style: none;
+}
+
+/* The primary channel takes its own full-width row. Keeps the long email on
+   one line and stops the third item being orphaned below. */
+.channels > li:first-child {
+  grid-column: 1 / -1;
+}
+
+.channelLabel {
+  font-size: 0.56rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--brand-brown) 62%, transparent);
+}
+
+.channelValue {
+  display: inline-block;
+  margin-top: 9px;
+  /* Long email address has to be able to break on narrow screens. */
+  overflow-wrap: anywhere;
+  font-size: 0.86rem;
+  font-weight: 500;
+  line-height: 1.5;
+  text-decoration: underline;
+  text-decoration-color: var(--brand-pink);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 4px;
+  transition: text-decoration-color 0.18s ease;
+}
+
+.channelValue[data-primary] {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: 1.05rem;
+}
+
+.channelValue:hover {
+  text-decoration-color: var(--brand-brown);
+}
+
+.channelValue:focus-visible,
+.channelPending:focus-visible {
+  outline: 2px solid var(--brand-brown);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+.channelPending {
+  display: inline-block;
+  margin-top: 9px;
+  padding: 6px 12px;
+  border: 1px dashed var(--brand-rule);
+  border-radius: 999px;
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: color-mix(in srgb, var(--brand-brown) 58%, transparent);
+  cursor: default;
+}
+
+.channelHint {
+  margin-top: 7px;
+  font-size: 0.68rem;
+  color: color-mix(in srgb, var(--brand-brown) 66%, transparent);
+}
+
+.postscript {
+  display: flex;
+  gap: 9px;
+  margin-top: 38px;
+  padding-top: 26px;
+  border-top: 1px solid var(--brand-rule);
+  font-size: 0.78rem;
+  line-height: 1.75;
+  color: color-mix(in srgb, var(--brand-brown) 84%, transparent);
+}
+
+.postscriptMark {
+  flex: none;
+  font-family: var(--font-playfair), Georgia, serif;
+  font-style: italic;
+  font-weight: 600;
+}
+
+@media (max-width: 760px) {
+  .letter {
+    padding: 34px 24px 30px;
+  }
+
+  .channels {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 26px;
+  }
+}

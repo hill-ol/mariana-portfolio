@@ -1,0 +1,132 @@
+.dialog {
+  width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
+  max-height: 100vh;
+  padding: 0;
+  border: none;
+  overflow: hidden;
+  background: transparent;
+  color: var(--brand-brown);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Dim and blur on ::backdrop, not on a child element. Two reasons: a blurred
+   descendant of the opacity-animated shell would sample its own group instead
+   of the page, so the blur would not show; and that group would have included
+   the morphing sheet, forcing a re-blur every frame — which is what made this
+   feel chunky before. ::backdrop samples the static page behind the dialog,
+   so the morph costs nothing extra. */
+.dialog::backdrop {
+  background: rgba(74, 54, 39, 0.46);
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+}
+
+.dialog[open]::backdrop {
+  animation: backdropIn 200ms ease-out;
+}
+
+@keyframes backdropIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.shell {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px 16px;
+  overflow: auto;
+}
+
+/* The shell doubles as the click-outside target; see ProjectModal.tsx. */
+
+/* The opened folder. Same tone and the same asymmetric top-left corner as the
+   card in the grid, so the morph reads as one object. */
+.sheet {
+  position: relative;
+  z-index: 1;
+  width: min(760px, 100%);
+  max-height: calc(100vh - 48px);
+  overflow: auto;
+  padding: 0 0 6px;
+  border-radius: 4px 16px 16px 16px;
+  background: var(--sheet-bg);
+  /* Tighter blur radius than before — a wide soft shadow on an element being
+     scaled is expensive to repaint each frame. */
+  box-shadow: 0 18px 34px -22px rgba(74, 54, 39, 0.55);
+}
+
+.sheet[data-tone="pink"] {
+  --sheet-bg: var(--brand-pink);
+  --tone-bg: var(--brand-pink);
+}
+
+.sheet[data-tone="butter"] {
+  --sheet-bg: var(--brand-butter);
+  --tone-bg: var(--brand-butter);
+}
+
+.sheetHead {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 12px 14px;
+  background: var(--sheet-bg);
+}
+
+/* Echoes the folder tab from the grid card. */
+.sheetTab {
+  width: 78px;
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.close {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  flex: none;
+  border: none;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--brand-brown);
+  cursor: pointer;
+  transition: background-color 0.18s ease;
+}
+
+.close svg {
+  width: 13px;
+  height: 13px;
+}
+
+.close:hover {
+  background: #fff;
+}
+
+.close:focus-visible {
+  outline: 2px solid var(--brand-brown);
+  outline-offset: 2px;
+}
+
+.sheetBody {
+  padding: 4px 22px 22px;
+}
+
+@media (max-width: 760px) {
+  .sheetBody {
+    padding: 4px 14px 14px;
+  }
+}

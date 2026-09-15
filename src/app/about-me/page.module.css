@@ -1,0 +1,269 @@
+.page {
+  flex: 1;
+  color: var(--brand-brown);
+  background: var(--brand-cream);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+/* Intro ------------------------------------------------------------------ */
+
+.intro {
+  border-bottom: 1px solid var(--brand-rule);
+  background-image:
+    radial-gradient(
+      420px 320px at 72% 34%,
+      rgba(223, 178, 158, 0.3),
+      transparent 70%
+    ),
+    radial-gradient(
+      340px 280px at 6% 96%,
+      rgba(240, 197, 212, 0.34),
+      transparent 70%
+    );
+}
+
+.introInner {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 52px;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 52px 40px 72px;
+  align-items: start;
+}
+
+/* Portrait card, framed like a photo print. */
+.portrait {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 10px 0;
+  border-radius: 6px;
+  background: var(--brand-card);
+  box-shadow: 0 12px 28px -18px rgba(96, 71, 52, 0.55);
+}
+
+.portraitImg,
+.portraitPlaceholder {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: 3px;
+  object-fit: cover;
+}
+
+.portraitPlaceholder {
+  display: grid;
+  place-items: center;
+  background: linear-gradient(
+    150deg,
+    var(--brand-blush),
+    var(--brand-butter) 75%
+  );
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: 2.4rem;
+  color: color-mix(in srgb, var(--brand-brown) 55%, transparent);
+}
+
+.portraitCaption {
+  padding: 11px 2px 13px;
+  font-family: var(--font-playfair), Georgia, serif;
+  font-size: 0.85rem;
+}
+
+.introText {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.title {
+  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
+  font-size: clamp(2rem, 3.2vw, 2.5rem);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+}
+
+.status {
+  margin-top: 16px;
+  padding: 8px 15px;
+  border-radius: 999px;
+  background: var(--brand-brown);
+  color: var(--brand-cream);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+/* The philosophy quote moved to the Creative Process page, so the intro
+   copy now follows the status pill directly. */
+.paragraph {
+  max-width: 36rem;
+  margin-top: 18px;
+  font-size: 0.84rem;
+  line-height: 1.85;
+  color: color-mix(in srgb, var(--brand-brown) 92%, transparent);
+}
+
+/* Adjacent sibling, not :first-of-type — the status pill is also a <p>, so
+   :first-of-type matches that instead of the first intro paragraph. */
+.status + .paragraph {
+  margin-top: 28px;
+}
+
+.credentials {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 14px 44px;
+  margin-top: 26px;
+}
+
+.credentials dt {
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--brand-brown) 62%, transparent);
+}
+
+.credentials dd {
+  margin-top: 5px;
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.resume,
+.resumePlaceholder {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 26px;
+  padding: 11px 20px;
+  border-radius: 999px;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.resume {
+  background: var(--brand-brown);
+  color: var(--brand-cream);
+  transition: background-color 0.18s ease;
+}
+
+.resume:hover {
+  background: var(--brand-brown-deep);
+}
+
+/* Non-interactive stand-in, so there is no dead link to click. */
+.resumePlaceholder {
+  border: 1px dashed var(--brand-rule);
+  color: color-mix(in srgb, var(--brand-brown) 58%, transparent);
+  cursor: default;
+}
+
+.travel {
+  max-width: 32rem;
+  margin-top: 30px;
+  padding: 15px 18px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.55);
+  font-size: 0.8rem;
+  line-height: 1.7;
+}
+
+/* Panels ----------------------------------------------------------------- */
+
+.panel {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 40px 40px 0;
+}
+
+.panel:last-of-type {
+  padding-bottom: 72px;
+}
+
+.panelCard {
+  padding: 38px 36px 42px;
+  border-radius: 22px;
+  background: var(--brand-card);
+  box-shadow: 0 18px 40px -28px rgba(96, 71, 52, 0.4);
+}
+
+.panelTitle {
+  font-family: var(--font-playfair), Georgia, "Times New Roman", serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+.panelNote {
+  margin-top: 6px;
+  margin-bottom: 30px;
+  font-size: 0.75rem;
+  color: color-mix(in srgb, var(--brand-brown) 68%, transparent);
+}
+
+/* Toolkit ---------------------------------------------------------------- */
+
+.toolkit {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 30px 36px;
+  margin-top: 30px;
+}
+
+.groupLabel {
+  padding-bottom: 11px;
+  border-bottom: 1px solid var(--brand-rule);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--brand-brown) 66%, transparent);
+}
+
+.groupItems {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 15px;
+  list-style: none;
+}
+
+.chip {
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: var(--brand-butter);
+  font-size: 0.65rem;
+  font-weight: 500;
+}
+
+@media (max-width: 860px) {
+  .introInner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+    padding: 36px 22px 56px;
+  }
+
+  .portrait {
+    max-width: 190px;
+  }
+
+  .panel {
+    padding: 28px 22px 0;
+  }
+
+  .panel:last-of-type {
+    padding-bottom: 56px;
+  }
+
+  .panelCard {
+    padding: 26px 20px 30px;
+    border-radius: 16px;
+  }
+}

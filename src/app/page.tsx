@@ -1,5 +1,6 @@
+import ContentReel from "./components/ContentReel";
 import ProjectGrid from "./components/ProjectGrid";
-import { projects } from "./content/projects";
+import { galleryItems, projects } from "./content/projects";
 import styles from "./page.module.css";
 
 const focusAreas = [
@@ -13,6 +14,8 @@ export default function Home() {
   return (
     <main className={styles.page}>
       <section className={styles.hero}>
+        {/* Entrance is CSS (see page.module.css) so the hero paints before
+            hydration — it holds the LCP element. */}
         <div className={styles.heroInner}>
           <h1 className={styles.heroTitle}>
             Marketing &amp; PR Strategist,
@@ -28,6 +31,8 @@ export default function Home() {
             experiences.
           </p>
 
+          {/* The pills reveal as one group — four arriving in sequence reads
+              as fussy at this size. */}
           <ul className={styles.tags}>
             {focusAreas.map(({ label, tone }) => (
               <li key={label} className={styles.tag} data-tone={tone}>
@@ -62,6 +67,14 @@ export default function Home() {
           </header>
 
           <ProjectGrid projects={projects} />
+        </div>
+      </section>
+
+      {/* Browse layer: the folders are for deliberate reading, this is for
+          skimming the visuals. Same data, different intent. */}
+      <section className={`${styles.portfolio} ${styles.reelSection}`}>
+        <div className={styles.portfolioCard}>
+          <ContentReel items={galleryItems()} />
         </div>
       </section>
     </main>

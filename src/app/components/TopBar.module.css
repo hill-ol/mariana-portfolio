@@ -68,8 +68,13 @@
   transition: opacity 0.18s ease;
 }
 
-.navLink[data-active]::after {
-  opacity: 1;
+/* The active underline is the shared-layout element below, not ::after. */
+.navUnderline {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  height: 1.5px;
+  background: currentColor;
 }
 
 .cta {
